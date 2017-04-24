@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Script for the parent game object that holds all of the level select buttons,
+/// which sets all locked level's images to locked.
+/// </summary>
 public class SetLockedImages : MonoBehaviour
 {
 		public Sprite m_lockImage;

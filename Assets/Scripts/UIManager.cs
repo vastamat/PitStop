@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Class to hold all of the UI OnClick functions and other UI-related functions
+/// </summary>
 public class UIManager : MonoBehaviour
 {
 		public void PlayButtonEvent()

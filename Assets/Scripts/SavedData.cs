@@ -1,6 +1,6 @@
-﻿/*
-	* Serializable class (for saving and loading) containing data to be saved when the games is turned off
-	*/
+﻿/// <summary>
+/// Serializable class (for saving and loading) containing data to be saved before the game is turned off
+/// </summary>
 [System.Serializable]
 public class SavedData
 {

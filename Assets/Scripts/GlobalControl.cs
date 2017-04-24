@@ -2,6 +2,9 @@
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
+/// <summary>
+/// A singleton class for data persistence between scenes and game startups
+/// </summary>
 public class GlobalControl : MonoBehaviour
 {
 		/*
