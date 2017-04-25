@@ -9,15 +9,7 @@ public class AIController : Car2DController
 		{
 				Accelerate();
 
-				TrackCheckpoint target = GetCurrentTarget();
-
-				Debug.Log(target);
-
-				Vector3 towardsNextCheckpoint = transform.position - target.transform.position;
-				float angleBetweenCP = Vector2.Angle(Vector2.up, towardsNextCheckpoint.normalized) * Mathf.Sign(towardsNextCheckpoint.y);
-				float rot = Mathf.MoveTowardsAngle(transform.localEulerAngles.z, angleBetweenCP, 0.3f);
-				transform.eulerAngles = new Vector3(0.0f, 0.0f, rot);
-				//Steer(Mathf.Sign(angleBetweenCP));
+				transform.rotation = Quaternion.Slerp(transform.rotation, GetCurrentTarget().transform.rotation * Quaternion.Euler(0.0f, 0.0f, -5.0f), 0.5f);
 		}
 
 		private TrackCheckpoint GetCurrentTarget()

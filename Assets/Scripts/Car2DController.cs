@@ -12,7 +12,7 @@ public class Car2DController : MonoBehaviour
 		private float m_driftFactorSticky = 0.9f;
 		private float m_driftFactorSlippy = 1;
 		private float m_maxStickyVelocity = 2.5f;
-		private float m_minSlippyVelocity = 1.5f;
+		//private float m_minSlippyVelocity = 1.5f;
 
 		private Rigidbody2D m_rb;
 		private Transform m_frontLeftWheel;
@@ -20,7 +20,7 @@ public class Car2DController : MonoBehaviour
 
 		void Start()
 		{
-				m_frontLeftWheel = transform.Find("FrontLeftWheel");
+				m_frontLeftWheel  = transform.Find("FrontLeftWheel");
 				m_frontRightWheel = transform.Find("FrontRightWheel");
 				if (m_frontLeftWheel == null || m_frontRightWheel == null)
 				{
@@ -42,19 +42,20 @@ public class Car2DController : MonoBehaviour
 
 		protected void Accelerate()
 		{
-				m_rb.AddForceAtPosition(m_frontLeftWheel.up  * m_speed, m_frontLeftWheel.position);
+				m_rb.AddForceAtPosition(m_frontLeftWheel.up * m_speed, m_frontLeftWheel.position);
 				m_rb.AddForceAtPosition(m_frontRightWheel.up * m_speed, m_frontRightWheel.position);
 		}
 		protected void Brake()
 		{
-				m_rb.AddForceAtPosition(m_frontLeftWheel.up  * -m_speed / 2f, m_frontLeftWheel.position);
+				m_rb.AddForceAtPosition(m_frontLeftWheel.up * -m_speed / 2f, m_frontLeftWheel.position);
 				m_rb.AddForceAtPosition(m_frontRightWheel.up * -m_speed / 2f, m_frontRightWheel.position);
 		}
+		
 		protected void Steer(float _amount)
 		{
 				float torqueForce = ForwardVelocity().magnitude / 10.0f;
 
-				m_rb.AddForceAtPosition(m_frontLeftWheel.right  * torqueForce * _amount, m_frontLeftWheel.position);
+				m_rb.AddForceAtPosition(m_frontLeftWheel.right * torqueForce * _amount, m_frontLeftWheel.position);
 				m_rb.AddForceAtPosition(m_frontRightWheel.right * torqueForce * _amount, m_frontRightWheel.position);
 		}
 

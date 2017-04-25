@@ -4,7 +4,7 @@
 /// Makes an object rotate to create a spinning effect;
 /// </summary>
 public class WheelSpinner : MonoBehaviour
-{
+{ 
 		/** How many degrees per sec should the saw spin at */
 		public float degreePerSec = 100.0f;
 		// Update is called once per frame
