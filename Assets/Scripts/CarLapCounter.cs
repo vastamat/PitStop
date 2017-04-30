@@ -8,9 +8,11 @@ public class CarLapCounter : MonoBehaviour
 
 		private TrackCheckpoint m_next;
 		private int m_numLaps;
+		private int m_lapsToWin;
 
 		void Start()
 		{
+				m_lapsToWin = 1;
 				m_numLaps = 0;
 				SetNextCheckpoint(m_first);
 				UpdateText();
@@ -22,8 +24,7 @@ public class CarLapCounter : MonoBehaviour
 				{
 						if (m_first == m_next)
 						{
-								m_numLaps++;
-								UpdateText();
+								OnFinishedLap();
 						}
 						SetNextCheckpoint(_checkpoint);
 				}
@@ -39,6 +40,27 @@ public class CarLapCounter : MonoBehaviour
 				if (m_lapsText)
 				{
 						m_lapsText.text = "Laps: " + m_numLaps.ToString();
+				}
+		}
+
+		private void OnFinishedLap()
+		{
+				m_numLaps++;
+				UpdateText();
+
+				if (m_numLaps == m_lapsToWin)
+				{
+						AIController aiController = GetComponent<AIController>();
+						if (aiController)
+						{
+								//an AI finisheds
+								aiController.enabled = false;
+						}
+						else
+						{
+								//player finished
+								GetComponent<PlayerController>().enabled = false;
+						}
 				}
 		}
 

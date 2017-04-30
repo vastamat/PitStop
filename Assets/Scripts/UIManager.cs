@@ -1,17 +1,49 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// Class to hold all of the UI OnClick functions and other UI-related functions
 /// </summary>
 public class UIManager : MonoBehaviour
 {
+		public Slider m_volumeSlider;
+
+		private void Start()
+		{
+				if (m_volumeSlider)
+				{
+						// Set the sliders value to the saved volume from previous games
+						m_volumeSlider.value = GlobalControl.m_instance.m_savedData.volume;
+						// Set the slider to inactive as it should come up when the music button is clicked
+						m_volumeSlider.gameObject.SetActive(false);
+				}
+		}
+
+		public void OnVolumeChanged(float _value)
+		{
+				// When the value on the slider is changed, save it in the volume global data
+				GlobalControl.m_instance.m_savedData.volume = _value;
+
+				// And change the listener volume to it
+				AudioListener.volume = _value;
+		}
+
+		public void OnVolumeButtonClicked()
+		{
+				// When the music button is clicked, change it to it's inverse state
+				m_volumeSlider.gameObject.SetActive(!m_volumeSlider.gameObject.activeSelf);
+		}
+
 		public void PlayButtonEvent()
 		{
 				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 		}
 		public void ExitButtonEvent()
 		{
+				//save the data
+				GlobalControl.m_instance.SaveData();
+				//exit the game
 				Application.Quit();
 		}
 		public void BackButtonEvent()
@@ -65,5 +97,9 @@ public class UIManager : MonoBehaviour
 		public void Level10Clicked()
 		{
 				SceneManager.LoadScene("Level10");
+		}
+		public void OnLevelFinish()
+		{
+				SceneManager.LoadScene("MainMenu");
 		}
 }
