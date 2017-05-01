@@ -9,18 +9,7 @@ public class PlayerController : Car2DController
 {
 		void FixedUpdate()
 		{
-#if UNITY_EDITOR_WIN
-				if (Input.GetButton("Accelerate"))
-				{
-						Accelerate();
-				}
-				if (Input.GetButton("Brakes"))
-				{
-						Brake();
-				}
-				Steer(Input.GetAxis("Horizontal"));
-
-#elif UNITY_ANDROID
+#if UNITY_ANDROID
 				//Check if the screen has been touched
 				if (Input.touchCount > 0)
 				{
@@ -44,12 +33,22 @@ public class PlayerController : Car2DController
 				}
 
 				Vector3 tilt = Input.acceleration;
+				//dead zone for steering
+				if (tilt.x < -0.1f || tilt.x > 0.1f)
+				{
+						Steer(tilt.x);
+				}
 
-				//rotate the tilt as the phone will be horizonal rather than vertical
-				//rotating the tilt by 90 on the z axis makes it correct when the phone is horizontal
-				//tilt = Quaternion.Euler(0.0f, 0.0f, 90.0f) * tilt;
-
-				Steer(tilt.x);
+#else
+				if (Input.GetKey(KeyCode.W))
+				{
+						Accelerate();
+				}
+				if (Input.GetKey(KeyCode.S))
+				{
+						Brake();
+				}
+				Steer(Input.GetAxis("Horizontal"));
 #endif
 		}
 }
