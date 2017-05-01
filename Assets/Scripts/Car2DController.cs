@@ -8,7 +8,7 @@
 [RequireComponent(typeof(Rigidbody2D))]
 public class Car2DController : MonoBehaviour
 {
-		private float m_speed = 35.0f;
+		public float m_speed = 35.0f;
 		private float m_driftFactorSticky = 0.9f;
 		private float m_driftFactorSlippy = 1;
 		private float m_maxStickyVelocity = 2.5f;
