@@ -14,7 +14,6 @@ public class PostProcessEffect : MonoBehaviour
 				m_material = new Material(Shader.Find("VCustom/PostProcessEff"));
 		}
 
-		// Update is called once per frame
 		void OnRenderImage(RenderTexture _source, RenderTexture _destination)
 		{
 				if (m_intensity == 0)
