@@ -20,13 +20,13 @@ public class UIManager : MonoBehaviour
 				}
 		}
 
-		public void OnVolumeChanged(float _value)
+		public void OnVolumeSlider()
 		{
 				// When the value on the slider is changed, save it in the volume global data
-				GlobalControl.m_instance.m_savedData.volume = _value;
+				GlobalControl.m_instance.m_savedData.volume = m_volumeSlider.value;
 
 				// And change the listener volume to it
-				AudioListener.volume = _value;
+				AudioListener.volume = m_volumeSlider.value;
 		}
 
 		public void OnVolumeButtonClicked()
